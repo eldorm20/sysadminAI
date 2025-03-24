@@ -42,75 +42,108 @@ def check_license():
 
 # Simulated SysAdmin tasks (Updated with real commands)
 def add_user(username, password, sudo=False):
-    print(f"Adding user: {username} with password: {password}")
-    sudo_command = 'sudo' if sudo else ''
-    command = f"{sudo_command} useradd -m -p {password} {username}"
-    subprocess.run(command, shell=True, check=True)
+    try:
+        print(f"Adding user: {username} with password: {password}")
+        sudo_command = 'sudo' if sudo else ''
+        command = f"{sudo_command} useradd -m -p {password} {username}"
+        subprocess.run(command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error adding user: {e}")
 
 def delete_user(username, delete_home=False):
-    print(f"Deleting user: {username}")
-    sudo_command = 'sudo'
-    command = f"{sudo_command} userdel"
-    if delete_home:
-        command += f" -r {username}"
-    else:
-        command += f" {username}"
-    subprocess.run(command, shell=True, check=True)
+    try:
+        print(f"Deleting user: {username}")
+        sudo_command = 'sudo'
+        command = f"{sudo_command} userdel"
+        if delete_home:
+            command += f" -r {username}"
+        else:
+            command += f" {username}"
+        subprocess.run(command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error deleting user: {e}")
 
 def list_users():
-    print("Listing all users...")
-    subprocess.run("cut -d: -f1 /etc/passwd", shell=True)
+    try:
+        print("Listing all users...")
+        subprocess.run("cut -d: -f1 /etc/passwd", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error listing users: {e}")
 
 def update_system():
-    print("Updating system...")
-    subprocess.run("sudo apt update && sudo apt upgrade -y", shell=True)
+    try:
+        print("Updating system...")
+        subprocess.run("sudo apt update && sudo apt upgrade -y", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error updating system: {e}")
 
 def cleanup_system():
-    print("Cleaning up system...")
-    subprocess.run("sudo apt autoremove -y", shell=True)
+    try:
+        print("Cleaning up system...")
+        subprocess.run("sudo apt autoremove -y", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error cleaning up system: {e}")
 
 def check_disk():
-    print("Checking disk usage...")
-    subprocess.run("df -h", shell=True)
+    try:
+        print("Checking disk usage...")
+        subprocess.run("df -h", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error checking disk usage: {e}")
 
 def check_memory():
-    print("Checking memory usage...")
-    subprocess.run("free -h", shell=True)
+    try:
+        print("Checking memory usage...")
+        subprocess.run("free -h", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error checking memory usage: {e}")
 
 def check_cpu():
-    print("Checking CPU info...")
-    subprocess.run("lscpu", shell=True)
+    try:
+        print("Checking CPU info...")
+        subprocess.run("lscpu", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error checking CPU info: {e}")
 
 # Pro Features (Updated with real commands)
 def check_system_performance():
-    print("Checking system performance...")
-    subprocess.run("top -n 1", shell=True)
+    try:
+        print("Checking system performance...")
+        subprocess.run("top -n 1", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error checking system performance: {e}")
 
 def backup_system():
-    print("Creating system backup...")
-    subprocess.run("sudo tar -czvf /home/elliot/system_backup.tar.gz /", shell=True)
+    try:
+        print("Creating system backup...")
+        subprocess.run("sudo tar -czvf /home/elliot/system_backup.tar.gz /", shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error creating system backup: {e}")
 
 def restore_backup():
-    print("Restoring system from backup...")
-    subprocess.run("sudo tar -xzvf /home/elliot/system_backup.tar.gz -C /", shell=True)
+    backup_file = "/home/elliot/system_backup.tar.gz"
+    if os.path.exists(backup_file):
+        try:
+            print("Restoring system from backup...")
+            subprocess.run(f"sudo tar -xzvf {backup_file} -C /", shell=True, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error restoring backup: {e}")
+    else:
+        print("Backup file does not exist.")
 
 def automate_updates():
-    print("Automating system updates...")
     try:
+        print("Automating system updates...")
         subprocess.run("sudo apt install unattended-upgrades -y", shell=True, check=True)
         subprocess.run("sudo dpkg-reconfigure --priority=low unattended-upgrades", shell=True, check=True)
+        print("System updates are now automated.")
     except subprocess.CalledProcessError as e:
         print(f"Error automating updates: {e}")
 
 def monitor_system_logs():
-    print("Monitoring system logs...")
     try:
-        result = subprocess.run("sudo journalctl -f", shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        logs = result.stdout.decode('utf-8')
-        if logs:
-            print(logs)
-        else:
-            print("No logs found.")
+        print("Monitoring system logs...")
+        subprocess.run("sudo journalctl -f", shell=True, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error monitoring logs: {e}")
 
