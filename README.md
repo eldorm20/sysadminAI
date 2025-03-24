@@ -59,37 +59,27 @@ Monitor System Logs: Track logs in real time using journalctl.
 Installation
 Clone this repository to your local machine:
 
-bash
-Копировать
-Редактировать
+
 git clone https://github.com/eldorm20/sysadminAI.git
 Navigate to the project directory:
 
-bash
-Копировать
-Редактировать
+
 cd sysadminAI
 (Optional) Set up a virtual environment:
 
-bash
-Копировать
-Редактировать
+
 python3 -m venv venv
 source venv/bin/activate
 Install any required dependencies (if any):
 
-bash
-Копировать
-Редактировать
+
 pip install -r requirements.txt
 You are ready to use SysAdmin AI.
 
 Usage
 Run the script:
 
-bash
-Копировать
-Редактировать
+
 python sysadminAI.py
 The tool will prompt you for user input and allow you to select various system administration tasks. If you have a valid Pro license, you will also have access to the Pro features.
 
@@ -100,8 +90,6 @@ License Key Format
 The license key is a string with the format:
 
 php-template
-Копировать
-Редактировать
 <license_key>,<expiration_date>,<status>
 <license_key>: The unique key provided to you.
 
