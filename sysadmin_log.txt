@@ -1,0 +1,2 @@
+System logs monitored.
+SSH security enhanced.
