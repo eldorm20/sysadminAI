@@ -1,4 +1,6 @@
 SysAdmin AI - Task Automator
+
+
 A command-line tool to automate and manage various system administration tasks, designed for SysAdmins and IT professionals. It includes both basic and pro-level features to help simplify your everyday system management tasks.
 
 This tool allows you to:
@@ -26,6 +28,8 @@ Backup System: Create and restore system backups
 Automate System Updates: Set up automatic system updates
 
 Monitor Logs: Monitor and track system logs in real time
+
+
 
 Features
 Core Features
@@ -56,10 +60,10 @@ Automate Updates: Set up unattended updates.
 
 Monitor System Logs: Track logs in real time using journalctl.
 
+
+
 Installation
 Clone this repository to your local machine:
-
-
 git clone https://github.com/eldorm20/sysadminAI.git
 Navigate to the project directory:
 
@@ -92,9 +96,7 @@ The license key is a string with the format:
 php-template
 <license_key>,<expiration_date>,<status>
 <license_key>: The unique key provided to you.
-
 <expiration_date>: The expiration date of the license.
-
 <status>: 1 for active, 0 for revoked.
 
 License
@@ -102,7 +104,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Contributing
 We welcome contributions to this project. If you'd like to improve this tool or add new features, feel free to fork the repository and submit a pull request.
-
 Please make sure to follow the coding style and add tests for any new functionality.
 
 Contact
